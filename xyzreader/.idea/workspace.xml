@@ -4,6 +4,13 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/XYZReader/src/main/res/layout/activity_article_list.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
@@ -50,12 +57,10 @@
         <entry file="file://$PROJECT_DIR$/XYZReader/src/main/java/com/example/xyzreader/ui/ArticleListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <caret line="105" column="42" selection-start-line="105" selection-start-column="42" selection-end-line="105" selection-end-column="42" />
               <folding>
-                <element signature="e#2646#3008#0" expanded="true" />
-                <element signature="e#3007#3008#0" expanded="true" />
-                <element signature="e#3049#3050#0" expanded="true" />
-                <element signature="e#3113#3114#0" expanded="true" />
+                <element signature="e#2693#3055#0" expanded="true" />
+                <element signature="e#3054#3055#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,14 +99,14 @@
       <file leaf-file-name="activity_article_list.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/XYZReader/src/main/res/layout/activity_article_list.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23020259">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.46040517">
+              <caret line="31" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="50" />
               <folding>
-                <element signature="e#774#799#0" expanded="true" />
-                <element signature="e#833#858#0" expanded="true" />
-                <element signature="e#1768#1801#0" expanded="true" />
-                <element signature="e#1845#1878#0" expanded="true" />
-                <element signature="e#2114#2132#0" expanded="true" />
+                <element signature="e#804#829#0" expanded="true" />
+                <element signature="e#859#884#0" expanded="true" />
+                <element signature="e#1487#1520#0" expanded="true" />
+                <element signature="e#1560#1593#0" expanded="true" />
+                <element signature="e#1809#1827#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2261,15 +2266,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/XYZReader/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.214286">
+          <caret line="18" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/XYZReader/src/main/java/com/example/xyzreader/ui/ArticleListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <caret line="105" column="42" selection-start-line="105" selection-start-column="42" selection-end-line="105" selection-end-column="42" />
           <folding>
-            <element signature="e#2646#3008#0" expanded="true" />
-            <element signature="e#3007#3008#0" expanded="true" />
-            <element signature="e#3049#3050#0" expanded="true" />
-            <element signature="e#3113#3114#0" expanded="true" />
+            <element signature="e#2693#3055#0" expanded="true" />
+            <element signature="e#3054#3055#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2282,24 +2293,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/XYZReader/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.214286">
-          <caret line="18" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/XYZReader/src/main/res/layout/activity_article_list.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23020259">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.46040517">
+          <caret line="31" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="50" />
           <folding>
-            <element signature="e#774#799#0" expanded="true" />
-            <element signature="e#833#858#0" expanded="true" />
-            <element signature="e#1768#1801#0" expanded="true" />
-            <element signature="e#1845#1878#0" expanded="true" />
-            <element signature="e#2114#2132#0" expanded="true" />
+            <element signature="e#804#829#0" expanded="true" />
+            <element signature="e#859#884#0" expanded="true" />
+            <element signature="e#1487#1520#0" expanded="true" />
+            <element signature="e#1560#1593#0" expanded="true" />
+            <element signature="e#1809#1827#0" expanded="true" />
           </folding>
         </state>
       </provider>
