@@ -21,6 +21,8 @@
         <item name="colorPrimary">@color/Pink_500</item>
         <item name="colorPrimaryDark">@color/Pink_700</item>
         <item name="colorAccent">@color/Lime_A200</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
 
     </style>
 
