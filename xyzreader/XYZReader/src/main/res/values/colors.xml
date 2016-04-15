@@ -23,4 +23,6 @@
     <color name="Lime_A200">#EEFF41</color>
     <color name="ltgray">#ffe0e0e0</color>
     <color name="white">#ffffff</color>
+    <color name="article_title_color">#f8000000</color>
+    <color name="article_subtitle_color">#a4a1a1</color>
 </resources>
