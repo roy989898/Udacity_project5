@@ -1,6 +1,5 @@
 package com.example.xyzreader.ui;
 
-import android.annotation.TargetApi;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -72,22 +71,37 @@ public class ArticleListActivity extends ActionBarActivity implements
         //set the appBar elevation  to 0 when mRecycleView no scroll
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 Log.d("onScrolled", "onScrolled");
 
+
+                int currentapiVersion = Build.VERSION.SDK_INT;
+
+                // Do something for lollipop and above versions
                 if (mRecyclerView.computeVerticalScrollOffset() == 0) {
-                    toolbarContainerView.setElevation(0);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        toolbarContainerView.setElevation(0);
+                    }
+
                 } else {
 
-                    int i =  (int)((AppBarLayout)toolbarContainerView).getTargetElevation();
+                    int i = (int) ((AppBarLayout) toolbarContainerView).getTargetElevation();
                     Log.d("onScrolled", i + "");
-                    toolbarContainerView.setElevation(i);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        toolbarContainerView.setElevation(i);
+                    }
                 }
             }
+
+
         });
+        if (savedInstanceState == null) {
+            refresh();
+        }
     }
 
 
