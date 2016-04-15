@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.annotation.TargetApi;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,15 +8,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
-import android.view.Menu;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -48,13 +50,13 @@ public class ArticleListActivity extends ActionBarActivity implements
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(mToolbar);
 //        getSupportActionBar().setTitle("");
 
@@ -67,11 +69,26 @@ public class ArticleListActivity extends ActionBarActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
 
-        if (savedInstanceState == null) {
-            refresh();
-        }
-    }
+        //set the appBar elevation  to 0 when mRecycleView no scroll
 
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("onScrolled", "onScrolled");
+
+                if (mRecyclerView.computeVerticalScrollOffset() == 0) {
+                    toolbarContainerView.setElevation(0);
+                } else {
+
+                    int i =  (int)((AppBarLayout)toolbarContainerView).getTargetElevation();
+                    Log.d("onScrolled", i + "");
+                    toolbarContainerView.setElevation(i);
+                }
+            }
+        });
+    }
 
 
     private void refresh() {
