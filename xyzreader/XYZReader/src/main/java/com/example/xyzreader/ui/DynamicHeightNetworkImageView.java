@@ -2,11 +2,13 @@ package com.example.xyzreader.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
 
 import com.android.volley.toolbox.NetworkImageView;
 
 public class DynamicHeightNetworkImageView extends NetworkImageView {
-    private float mAspectRatio = 1.5f;
+    private float mAspectRatio = 2/3f;
 
     public DynamicHeightNetworkImageView(Context context) {
         super(context);
@@ -27,8 +29,15 @@ public class DynamicHeightNetworkImageView extends NetworkImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int measuredWidth = getMeasuredWidth();
-        setMeasuredDimension(measuredWidth, (int) (measuredWidth / mAspectRatio));
+        Log.d("onMeasure","Ratio: "+mAspectRatio);
+        Log.d("onMeasure","width: : "+MeasureSpec.getSize(widthMeasureSpec));
+        float threeTwoHeight=  ((float)MeasureSpec.getSize(widthMeasureSpec));
+        Log.d("onMeasure","threeTwoHeight: : "+threeTwoHeight);
+        //1:1 now
+//        float threeTwoHeight=  (MeasureSpec.getSize(widthMeasureSpec));
+        int threeTwoHeightSpec = MeasureSpec.makeMeasureSpec((int) threeTwoHeight, MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, threeTwoHeightSpec);
+       /* int measuredWidth = getMeasuredWidth();
+        setMeasuredDimension(measuredWidth, (int) (measuredWidth / mAspectRatio));*/
     }
 }
