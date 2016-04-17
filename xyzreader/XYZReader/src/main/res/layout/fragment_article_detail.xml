@@ -27,8 +27,8 @@
                     <ImageView
                         android:id="@+id/photo"
                         android:layout_width="match_parent"
-                        android:scaleType="centerCrop"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
 
                     <View
                         android:layout_width="match_parent"
@@ -40,8 +40,8 @@
                 <com.example.xyzreader.ui.MaxWidthLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:layout_below="@id/photo_container"
+                    android:layout_gravity="center_horizontal"
                     android:background="#fff"
                     android:elevation="2dp"
                     android:maxWidth="@dimen/detail_card_max_width"
