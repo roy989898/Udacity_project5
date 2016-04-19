@@ -7,11 +7,13 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -35,25 +37,26 @@ import com.example.xyzreader.data.ArticleLoader;
  */
 public class ArticleDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "ArticleDetailFragment";
-
     public static final String ARG_ITEM_ID = "item_id";
+    private static final String TAG = "ArticleDetailFragment";
     private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
-//    private ObservableScrollView mScrollView;
+    //    private ObservableScrollView mScrollView;
 //    private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
     private ColorDrawable mStatusBarColorDrawable;
 
     private int mTopInset;
-//    private View mPhotoContainerView;
+    //    private View mPhotoContainerView;
     private ImageView mPhotoView;
     private int mScrollY;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
+    private NestedScrollView nestedScrollView;
+    private AppBarLayout appBarlayoit;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -68,6 +71,20 @@ public class ArticleDetailFragment extends Fragment implements
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
+    }
+
+    static float progress(float v, float min, float max) {
+        return constrain((v - min) / (max - min), 0, 1);
+    }
+
+    static float constrain(float val, float min, float max) {
+        if (val < min) {
+            return min;
+        } else if (val > max) {
+            return max;
+        } else {
+            return val;
+        }
     }
 
     @Override
@@ -101,8 +118,32 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detailv2, container, false);
+        nestedScrollView = (NestedScrollView) mRootView.findViewById(R.id.nestedScrollView);
+        appBarlayoit = (AppBarLayout) mRootView.findViewById(R.id.appBarLayout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            appBarlayoit.setElevation(0);
+        }
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.d("onScrollChange", "scrollX: " + scrollX + "scrollY: " + scrollY + "oldScrollX: " + oldScrollX + "oldScrollY: " + oldScrollY);
+                if (scrollY == 0) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        appBarlayoit.setElevation(0);
+                    }
+
+                } else {
+                    int i = (int) appBarlayoit.getTargetElevation();
+                    Log.d("onScrolled", i + "");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        appBarlayoit.setElevation(i);
+                    }
+
+                }
+            }
+        });
 //        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
 //                mRootView.findViewById(R.id.draw_insets_frame_layout);
        /* mDrawInsetsFrameLayout.setOnInsetsCallback(new DrawInsetsFrameLayout.OnInsetsCallback() {
@@ -158,20 +199,6 @@ public class ArticleDetailFragment extends Fragment implements
 //        mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
     }
 
-    static float progress(float v, float min, float max) {
-        return constrain((v - min) / (max - min), 0, 1);
-    }
-
-    static float constrain(float val, float min, float max) {
-        if (val < min) {
-            return min;
-        } else if (val > max) {
-            return max;
-        } else {
-            return val;
-        }
-    }
-
     private void bindViews() {
         if (mRootView == null) {
             return;
@@ -219,7 +246,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
-            bylineView.setText("N/A" );
+            bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
     }
