@@ -15,17 +15,28 @@
      limitations under the License.
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/Pink_500</item>
         <item name="colorPrimaryDark">@color/Pink_700</item>
         <item name="colorAccent">@color/Lime_A200</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
 
 
     </style>
 
+    <style name="AppTheme.Home" parent="AppTheme">
+        <item name="android:windowExitTransition" tools:targetApi="lollipop">
+            @transition/grid_exit
+        </item>
+    </style>
+    <style name="AppTheme.Detail" parent="AppTheme">
+        <item name="android:windowEnterTransition" tools:targetApi="lollipop">
+            @transition/slide_enter
+        </item>
+    </style>
 
 
 </resources>
